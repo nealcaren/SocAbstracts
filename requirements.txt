@@ -1,0 +1,6 @@
+streamlit
+numpy
+spacy
+sklearn
+nltk
+eli5
