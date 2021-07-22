@@ -5,6 +5,14 @@ import pandas as pd
 
 import spacy
 
+from spacy.cli import download
+try:
+    nlp = spacy.load('en_core_web_md')
+except OSError:
+
+    from spacy.cli import download
+    download('en_core_web_md')
+    nlp = spacy.load('en_core_web_md')
 
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
@@ -70,7 +78,6 @@ def eli5_abstract():
     return sample_pred
 st.markdown(eli5_abstract(), unsafe_allow_html=True)
 
-nlp = spacy.load("en_core_web_md")
 
 # Find useful synonyms
 coef_df = pd.DataFrame(model.coef_.T,
