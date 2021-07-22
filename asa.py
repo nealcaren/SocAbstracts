@@ -11,6 +11,9 @@ from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.linear_model import LogisticRegression
 from string import punctuation
 
+import nltk
+nltk.download('punkt')
+
 from nltk.tokenize import word_tokenize, sent_tokenize
 
 
