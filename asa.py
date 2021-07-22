@@ -82,7 +82,7 @@ st.markdown(eli5_abstract(), unsafe_allow_html=True)
 # Find useful synonyms
 coef_df = pd.DataFrame(model.coef_.T,
                       index = vectorizer.get_feature_names())
-coef_df['used'] = vectorizer.transform([abstract]).toarray()[0]
+coef_df['used'] = vectorizer.transform([sample_sentence]).toarray()[0]
 used_df = coef_df[coef_df['used']!=0]
 negative_words = used_df[used_df[0] < 0].index
 negative_words = [w for w in negative_words if ' ' not in w]
