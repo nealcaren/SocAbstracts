@@ -63,6 +63,7 @@ sample_sentence_length = word_counter(sample_sentence)
 sample_sentence_slength = len(sent_tokenize(sample_sentence))
 pasper = passive_per(sample_sentence) * 100
 
+st.markdown('### Descriptives')
 st.write(f'Your abstract has {sample_sentence_length} words in {sample_sentence_slength} sentences. The median published abstract has 196 words in seven sentences.')
 st.write(f'{pasper:.0f}% of your sentences were written in the passive voice. For published sociological research, the average is 20%.')
 
@@ -79,6 +80,8 @@ else:
 	ptext = 'found in a conference than a journal'
 
 pstatement = f'Based on my data and model, the probablity that this would associated with a journal is {pred:.2f}.'
+
+st.markdown('### Words')
 
 st.write(f'Looking at the words you used, compared to other abstracts from sociology journals and prior year ASAs, your abstract looks more like one {ptext} {pstatement}')
 st.write('Here is a summary of what words in your abstract the model found associated with journal and conference abstracts. Words in pink and red are those more likely to be found in conference abstracts, while those in green are disproporatenly found in the abstracts of published papers.')
@@ -109,6 +112,10 @@ for word in negative_words:
 	if word in syn_dict:
 		custom_syns.append({'word': word, 'Possible replacements' :syn_dict[word] })
 sdf = pd.DataFrame(custom_syns)
+st.markdown('### Revisions')
 
 st.write('When looking at the words you used, there might be some similar words that are more associated with journal abstracts than conference abstracts. Below is a chart that shows, for each your words in red, the three most similar words positively associated with journal abstracts. Since similarity is based on word embeddings, specific suggestions might not actually be useful.')
 st.table(sdf.set_index('word'))
+
+st.markdown('### Small print')
+st.write('This analysis is based on...')
