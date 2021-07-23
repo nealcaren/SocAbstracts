@@ -34,6 +34,21 @@ def word_counter(text):
 	words = [w for w in words if w not in punctuation]
 	return len(words)
 
+def passive_per(abstract):
+    sentences = sent_tokenize(abstract)
+    sen_count = len(sentences)
+    pas_count = 0
+    for sentence in sentences:
+        doc = nlp(sentence)
+        passive = False
+        for t in doc:
+            if t.dep_ in ['nsubjpass','auxpass']:
+                passive = True
+        if passive == True:
+            pas_count +=1
+
+    return(pas_count/sen_count)
+
 st.title('From Paper to Manuscript')
 st.write('As you turn your attention from your presenting your work at the ASAs to journal submission, you might focus on the differences between writing an abstract for a presentation versus writing one for publication.  This page might help.')
 st.write('I analyzed five years of abstracts from the ASA annual meeting and sociology journals to see what words are disproportionately found in each. This page lets you use that model on your abstracts.')
@@ -46,8 +61,10 @@ sample_sentence = st.text_area('', abstract, height=400)
 
 sample_sentence_length = word_counter(sample_sentence)
 sample_sentence_slength = len(sent_tokenize(sample_sentence))
+pasper = passive_per(sample_sentence)
 
 st.write(f'Your abstract has {sample_sentence_length} words in {sample_sentence_slength} sentences. The median published abstract has 196 words in seven sentences.')
+st.write(f'{pasper:.2f}% of your sentences were written in the passive voice. For published sociological research, the average is 20%.')
 
 # Prediction from saved model
 pipeline = load('abstract_estimator.joblib')
@@ -64,7 +81,6 @@ else:
 pstatement = f'Based on my data and model, the probablity that this would associated with a journal is {pred:.2f}.'
 
 st.write(f'Looking at the words you used, compared to other abstracts from sociology journals and prior year ASAs, your abstract looks more like one {ptext} {pstatement}')
-
 st.write('Here is a summary of what words in your abstract the model found associated with journal and conference abstracts. Words in pink and red are those more likely to be found in conference abstracts, while those in green are disproporatenly found in the abstracts of published papers.')
 def eli5_abstract():
     sample_pred = eli5.show_prediction(model,
