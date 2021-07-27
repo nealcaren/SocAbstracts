@@ -119,14 +119,14 @@ st.table(sdf.set_index('word'))
 
 st.markdown('### Small print')
 st.markdown('''This analysis is built on:
-Data:
+*Data:*
 * [x] ASA conference abstracts from the ASA website from [x] to [y].
 * [y] articles published in sociology journals from Web of Science from [x] to [y].
-Analysis:
+*Analysis:*
 * Conference/publication classification is based on logistic regression model after performing a grid search to find the best term frequency vectorizer paramaters.
 * Word colors are based on logistic regression coefficients.
-* The revisions options use word embeddings trained on the entire abstract corpus to find words with positive coefficients that are found in a similar context.
-Software:
+* The revisions options use word embeddings trained on the entire abstract corpus to find words with positive coefficients that are found in a similar context.    
+*Software:*
 * Coding in Python using Jupyter Notebooks.
 * [scikit-learn](https://scikit-learn.org/stable/) for classification model.
 * [spaCy](https://spacy.io) for estimating active/passive voice.
