@@ -50,6 +50,7 @@ def passive_per(abstract):
     return(pas_count/sen_count)
 
 st.title('From Paper to Manuscript')
+st.markdown('### A work in progress by Neal Caren')
 st.write('As you turn your attention from your presenting your work at the ASAs to journal submission, you might focus on the differences between writing an abstract for a presentation versus writing one for publication.  This page might help.')
 st.write('I analyzed five years of abstracts from the ASA annual meeting and sociology journals to see what words are disproportionately found in each. This page lets you use that model on your abstracts.')
 st.write('To start, delete my abstract below, paste your abstract in the box, and press ⌘ + Enter to analyze your text:')
@@ -120,7 +121,7 @@ st.table(sdf.set_index('word'))
 st.markdown('### Small print')
 st.markdown('''This analysis is built on:
 
-*Data:*     
+*Data:*
 * [x] ASA conference abstracts from the ASA website from [x] to [y].
 * [y] articles published in sociology journals from Web of Science from [x] to [y].
 
