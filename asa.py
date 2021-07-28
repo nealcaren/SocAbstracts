@@ -122,13 +122,13 @@ st.markdown('### Small print')
 st.markdown('''This analysis is built on:
 
 *Data:*
-* [x] ASA conference abstracts from the ASA website from [x] to [y].
-* [y] articles published in sociology journals from Web of Science from [x] to [y].
+* 14,609 ASA conference abstracts prsented from 2016-2019 collected from the ASA [conference paper archive](https://convention2.allacademic.com/one/asa/asa/).
+* 6,590 articles published between 2017 and 2021 in sociology journals from Web of Science.
 
 *Analysis:*
 * Conference/publication classification is based on logistic regression model after performing a grid search to find the best term frequency vectorizer paramaters.
 * Word colors are based on logistic regression coefficients.
-* The revisions options use word embeddings trained on the entire abstract corpus to find words with positive coefficients that are found in a similar context.
+* The revisions options use word embeddings trained on a sample of papers submitted to the ASA to find words with positive coefficients that are found in a similar context.
 
 *Software:*
 * Coding in Python using Jupyter Notebooks.
