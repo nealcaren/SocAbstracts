@@ -49,6 +49,13 @@ def passive_per(abstract):
 
     return(pas_count/sen_count)
 
+def cleanab(text):
+    text = text.replace('-','')
+    text = text.replace('African American','AfricanAmerican')
+    return text
+
+
+
 st.title('''Revising Sociology Abstracts''')
 # st.markdown('''## From Paper to Manuscript''')
 st.markdown('### A work in progress by [Neal Caren](https://nealcaren.org)')
@@ -65,6 +72,8 @@ sample_sentence_length = word_counter(sample_sentence)
 sample_sentence_slength = len(sent_tokenize(sample_sentence))
 pasper = passive_per(sample_sentence) * 100
 sample_sentence_slength_str = num2words(sample_sentence_slength)
+
+sample_sentence = cleanab(sample_sentence)
 
 st.markdown('### Descriptives')
 st.write(f'Your abstract has {sample_sentence_length} words in {sample_sentence_slength_str} sentences. The median published abstract has 196 words in seven sentences.')
