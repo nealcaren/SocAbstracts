@@ -123,7 +123,7 @@ st.markdown('### Small print')
 st.markdown('''This analysis is built on:
 
 *Data:*
-* 14,609 ASA conference abstracts presnted from 2016-2019 collected from the ASA [conference paper archive](https://convention2.allacademic.com/one/asa/asa/).
+* 14,609 ASA conference abstracts presented from 2016-2019 collected from the ASA [conference paper archive](https://convention2.allacademic.com/one/asa/asa/).
 * 6,590 articles published between 2017 and 2021 in sociology journals from Web of Science.
 
 *Analysis:*
