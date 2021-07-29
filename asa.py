@@ -116,7 +116,7 @@ for word in negative_words:
 sdf = pd.DataFrame(custom_syns)
 st.markdown('### Revisions')
 
-st.write('When looking at the words you used, there might be some similar words that are more associated with journal abstracts than conference abstracts. Below is a chart that shows, for each your words in red, the three  similar words not associated with conference abstracts. Since similarity is based on word embeddings trained on a pretty small corpus, specific suggestions might not actually be useful.')
+st.write('When looking at the words you used, there might be some similar words that are more associated with journal abstracts than conference abstracts. Below is a chart that shows, for each of your words in red, the three  similar words not associated with conference abstracts. Since similarity is based on word embeddings trained on a pretty small corpus or because you might not want to mimic existing  work, specific suggestions might not actually be helpful.')
 st.table(sdf.set_index('word'))
 
 st.markdown('### Small print')
