@@ -19,6 +19,8 @@ from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.linear_model import LogisticRegression
 from string import punctuation
 
+from num2words import num2words
+
 import nltk
 nltk.download('punkt')
 
@@ -63,9 +65,9 @@ sample_sentence = st.text_area('', abstract, height=400)
 sample_sentence_length = word_counter(sample_sentence)
 sample_sentence_slength = len(sent_tokenize(sample_sentence))
 pasper = passive_per(sample_sentence) * 100
-
+sample_sentence_length_str = num2words(sample_sentence_length)
 st.markdown('### Descriptives')
-st.write(f'Your abstract has {sample_sentence_length} words in {sample_sentence_slength} sentences. The median published abstract has 196 words in seven sentences.')
+st.write(f'Your abstract has {sample_sentence_length_str} words in {sample_sentence_slength} sentences. The median published abstract has 196 words in seven sentences.')
 st.write(f'{pasper:.0f}% of your sentences were written in the passive voice. For published sociological research, the average is 20%.')
 
 # Prediction from saved model

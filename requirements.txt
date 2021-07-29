@@ -4,3 +4,4 @@ spacy
 sklearn
 nltk
 eli5
+num2words
