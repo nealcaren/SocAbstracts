@@ -94,7 +94,7 @@ suggestions = journal_choices(sample_sentence)
 
 st.markdown('### Journals')
 
-st.write(f'You might thinkg about journals like {suggestions}. Each publish work that have abstracts using similar words.')
+st.write(f'You might think about submitting to journals like {suggestions}. Each publish work that have abstracts using similar words.')
 
 
 
