@@ -4,7 +4,6 @@ import streamlit as st
 import pandas as pd
 
 import spacy
-
 try:
     nlp = spacy.load('en_core_web_md')
 except OSError:
@@ -18,6 +17,10 @@ from sklearn.linear_model import LogisticRegression
 from string import punctuation
 
 from num2words import num2words
+
+from imblearn.over_sampling import SMOTE
+from imblearn.pipeline import Pipeline as Pipeline_imb
+
 
 import nltk
 nltk.download('punkt')

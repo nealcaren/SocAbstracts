@@ -5,3 +5,4 @@ sklearn
 nltk
 eli5
 num2words
+imblearn
