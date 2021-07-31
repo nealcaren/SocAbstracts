@@ -79,6 +79,25 @@ st.markdown('### Descriptives')
 st.write(f'Your abstract has {sample_sentence_length} words in {sample_sentence_slength_str} sentences. The median published abstract has 196 words in seven sentences.')
 st.write(f'{pasper:.0f}% of your sentences were written in the passive voice. For published sociological research, the average is 20%.')
 
+# Journal predictions
+pub_est = load('pub_est.jlib')
+def journal_choices(abstract):
+    pred_prob = pub_est.predict_proba([abstract])
+    pdf = pd.DataFrame(pred_prob, columns=pub_est.classes_)
+    pdf = pdf.T.sort_values(by=0, ascending = False)
+
+    journal_choices = pdf.index.values[:5]
+    journal_choices = ', '.join(journal_choices[:-1]) + ' or ' + journal_choices[-1]
+    return journal_choices
+
+suggestions = journal_choices(sample_sentence)
+
+st.markdown('### Journals')
+
+st.write(f'You might thinkg about journals like {suggestions}. Each publish work that have abstracts using similar words.')
+
+
+
 # Prediction from saved model
 pipeline = load('abstract_estimator.joblib')
 vectorizer = pipeline.named_steps['vect']
