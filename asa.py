@@ -145,7 +145,7 @@ coef_df = pd.DataFrame(model.coef_.T,
                       index = vectorizer.get_feature_names())
 coef_df['used'] = vectorizer.transform([sample_sentence]).toarray()[0]
 used_df = coef_df[coef_df['used']!=0]
-negative_words = used_df[used_df[0] < 0].index
+negative_words = used_df[used_df[0] < .5].index
 negative_words = [w for w in negative_words if ' ' not in w]
 
 custom_syns = []
@@ -227,12 +227,13 @@ st.markdown('''This analysis is built on:
 * Conference/publication classification is based on logistic regression model after performing a grid search to find the best term frequency vectorizer parameters.
 * Word colors are based on logistic regression coefficients.
 * The revisions options use word embeddings trained on a sample of papers submitted to the ASA to find words without negative coefficients that are found in a similar context.
+* Article recommendations are based on cosine similarity of topic models estimates. Anything faster would be great.
 
 *Software:*
 * Coding in Python using Jupyter Notebooks.
 * [scikit-learn](https://scikit-learn.org/stable/) for classification model.
 * [spaCy](https://spacy.io) for estimating active/passive voice.
 * [ELI5](https://eli5.readthedocs.io/en/latest/) for displaying word-specific predictions.
-* [Gensim](https://radimrehurek.com/gensim/) for word embeddings.
+* [Gensim](https://radimrehurek.com/gensim/) for word embeddings and topic models.
 * [streamlit](https://streamlit.io) for interactivity.
 ''')
