@@ -27,7 +27,6 @@ from gensim.matutils import cossim
 
 import nltk
 from nltk.stem.wordnet import WordNetLemmatizer
-from nltk.corpus import stopwords
 from nltk.tokenize import RegexpTokenizer
 
 
@@ -161,6 +160,9 @@ st.write('When looking at the words you used, there might be some similar words 
 st.table(sdf.set_index('word'))
 
 st.markdown('### Similar Articles')
+
+nltk.download('stopwords')
+from nltk.corpus import stopwords
 
 
 def title_fix(title):
