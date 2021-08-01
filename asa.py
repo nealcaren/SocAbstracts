@@ -145,8 +145,9 @@ coef_df = pd.DataFrame(model.coef_.T,
                       index = vectorizer.get_feature_names())
 coef_df['used'] = vectorizer.transform([sample_sentence]).toarray()[0]
 used_df = coef_df[coef_df['used']!=0]
+used_df = used_df.sort_values(by=0)
 negative_words = used_df[used_df[0] < -.5].index
-negative_words = [w for w in negative_words if ' ' not in w]
+negative_words = [w for w in negative_words if ' ' not in w][:10]
 
 custom_syns = []
 syn_dict = load('synonyms.jlib')
