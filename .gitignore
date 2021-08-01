@@ -112,3 +112,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+.DS_Store
+env.yml
+*.ipynb
+notebooks/asas.json
+notebooks/soc_abstracts.json
+notebooks/soc_journals.json

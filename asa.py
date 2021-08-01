@@ -21,8 +21,17 @@ from num2words import num2words
 from imblearn.over_sampling import SMOTE
 from imblearn.pipeline import Pipeline as Pipeline_imb
 
+from gensim.corpora import Dictionary
+from gensim.models import LdaModel
+from gensim.matutils import cossim
 
 import nltk
+from nltk.stem.wordnet import WordNetLemmatizer
+from nltk.corpus import stopwords
+from nltk.tokenize import RegexpTokenizer
+
+
+nltk.download('wordnet')
 nltk.download('punkt')
 
 from nltk.tokenize import word_tokenize, sent_tokenize
@@ -150,6 +159,59 @@ st.markdown('### Revisions')
 
 st.write('When looking at the words you used, there might be some similar words that are more associated with journal abstracts than conference abstracts. Below is a chart that shows, for each of your words in red, the three  similar words not associated with conference abstracts. Since similarity is based on word embeddings trained on a pretty small corpus or because you might not want to mimic existing  work, specific suggestions might not actually be helpful.')
 st.table(sdf.set_index('word'))
+
+st.markdown('### Similar Articles')
+
+
+def title_fix(title):
+    if 'SOCIOLOGICAL METHODOLOGY' in title:
+        title = 'SOCIOLOGICAL METHODOLOGY'
+    title = title.title()
+    for hack in [' Of ', ' And ', ' On ']:
+        title = title.replace(hack, hack.lower())
+    return title
+
+
+
+def valid(token):
+    if token.isnumeric() == True:
+        return False
+    if len(token) < 2:
+        return False
+    if token in stop_words:
+        return False
+    return True
+
+def fast_tokenize(doc):
+    doc = doc.lower()
+    tokens = tokenizer.tokenize(doc)
+    tokens = [lemmatizer.lemmatize(t) for t in tokens if valid(t) == True]
+    return tokens
+
+def nearestneighbor(existing_tokens, ab_tokens):
+    doc1 = topic_model[ab_tokens]
+    doc2 = existing_tokens
+    return cossim(doc1, doc2)
+
+def simwork(new_abstract):
+    ab_tokens = fast_tokenize(new_abstract)
+    ab_tokens = topic_dictionary.doc2bow(ab_tokens)
+    cdf['sim'] = cdf['topics'].apply(nearestneighbor, args=(ab_tokens,))
+    matches = list(cdf.sort_values(by='sim', ascending=False)['cite'].values[:5])
+    match_text = '\n* '.join(matches)
+    return match_text
+
+cdf = pd.read_json('pub_cites.json')
+topic_model = LdaModel.load("abstract_topics.model")
+topic_dictionary =  Dictionary.load("abstract_topics.dict")
+
+lemmatizer = WordNetLemmatizer()
+tokenizer = RegexpTokenizer(r'\w+')
+stop_words = stopwords.words('english')
+
+matches = simwork(sample_sentence)
+st.write('You might have already seen these, but some recent work that might be similar to yours is:')
+st.markdown(matches)
 
 st.markdown('### Small print')
 st.markdown('''This analysis is built on:
