@@ -201,6 +201,7 @@ def simwork(new_abstract):
     cdf['sim'] = cdf['topics'].apply(nearestneighbor, args=(ab_tokens,))
     matches = list(cdf.sort_values(by='sim', ascending=False)['cite'].values[:5])
     match_text = '\n* '.join(matches)
+    match_text = match_text[1:].replace('..','.')
     return match_text
 
 cdf = pd.read_json('pub_cites.json')

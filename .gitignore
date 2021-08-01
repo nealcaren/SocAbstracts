@@ -118,3 +118,10 @@ env.yml
 notebooks/asas.json
 notebooks/soc_abstracts.json
 notebooks/soc_journals.json
+notebooks/abstract_topics.dict
+notebooks/abstract_topics.model
+notebooks/abstract_topics.model.expElogbeta.npy
+notebooks/abstract_topics.model.id2word
+notebooks/abstract_topics.model.state
+notebooks/pub_cites.json
+notebooks/soc_asa.bin
