@@ -96,7 +96,7 @@ if sample_sentence_length < 100:
 length_sentence = f'Your abstract has {sample_sentence_length} words in {sample_sentence_slength_str} sentences. {middle}The median published abstract has 196 words in seven sentences.'
 passive_sentence = f'{pasper:.0f}% of your sentences were written in the passive voice. For published sociological research, the average is 20%.'
 
-if passive_sentence[0] == [0]:
+if passive_sentence[0] == '0':
     passive_sentence = passive_sentence.replace('0% of your', 'Well done. None of your')
 
 st.markdown('### Descriptives')
