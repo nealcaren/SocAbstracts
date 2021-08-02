@@ -100,7 +100,8 @@ if passive_sentence[0] == [0]:
     passive_sentence = passive_sentence.replace('0% of your', 'Well done. None of your')
 
 st.markdown('### Descriptives')
-st.write(f'{length_sentence} {passive_sentence}')
+desriptive_sentence = f'{length_sentence} {passive_sentence}'
+st.write(desriptive_sentence)
 
 # Journal predictions
 pub_est = load('pub_est.jlib')
