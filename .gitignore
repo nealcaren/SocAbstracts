@@ -125,3 +125,4 @@ notebooks/abstract_topics.model.id2word
 notebooks/abstract_topics.model.state
 notebooks/pub_cites.json
 notebooks/soc_asa.bin
+*.xls

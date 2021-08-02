@@ -87,13 +87,13 @@ sample_sentence_slength_str = num2words(sample_sentence_slength)
 sample_sentence = cleanab(sample_sentence)
 
 middle = ''
-if sample_sentence_length > 250:
+if sample_sentence_length > 200:
     middle = 'Depending on the journal, you might neeed to cut that down. '
-if sample_sentence_length < 100:
+if sample_sentence_length < 125:
      middle = 'Depending on the journal, you might neeed to lengthen it. '
 
 
-length_sentence = f'Your abstract has {sample_sentence_length} words in {sample_sentence_slength_str} sentences. {middle}The median published abstract has 196 words in seven sentences.'
+length_sentence = f'Your abstract has {sample_sentence_length} words in {sample_sentence_slength_str} sentences. {middle}The median published abstract has 158 words in six sentences.'
 passive_sentence = f'{pasper:.0f}% of your sentences were written in the passive voice. For published sociological research, the average is 20%.'
 
 if passive_sentence[0] == '0':
@@ -234,8 +234,8 @@ st.markdown('### Small print')
 st.markdown('''This analysis is built on:
 
 *Data:*
-* 14,609 ASA conference abstracts presented from 2016-2019 collected from the ASA [conference paper archive](https://convention2.allacademic.com/one/asa/asa/).
-* 6,590 articles published between 2017 and 2021 in sociology journals from Web of Science.
+* 14,584 ASA conference abstracts presented from 2016-2019 collected from the ASA [conference paper archive](https://convention2.allacademic.com/one/asa/asa/).
+* 7,131 articles published between 2017 and 2021 in sociology journals from Web of Science.
 
 *Analysis:*
 * Conference/publication classification is based on logistic regression model after performing a grid search to find the best term frequency vectorizer parameters.
