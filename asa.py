@@ -237,6 +237,7 @@ st.markdown('''This analysis is built on:
 * 14,584 ASA conference abstracts presented from 2016-2019 collected from the ASA [conference paper archive](https://convention2.allacademic.com/one/asa/asa/).
 * 7,131 articles published between 2017 and 2021 in sociology journals from Web of Science.
 * Journals include Social Science Research, Sociology of Health & Illness, Ethnic and Racial Studies, Demography, Journal of Marriage and Family, American Behavioral Scientist, Work Employment and Society, Social Forces, Social Networks, Sociological Perspectives, Sociological Forum, Sociological Methods & Research, Social Movement Studies, City & Community, Poetics, Sociological Quarterly, Sociological Inquiry, American Sociological Review, Theory and Society, Gender & Society, Social Problems, Journal of Health and Social Behavior, International Migration Review, Race and Social Problems, American Journal of Sociology, Qualitative Sociology, Sociological Science, Mobilization, Population and Development Review, Sociology of Religion, Sociology of Education, Du Bois Review-Social Science Research on Race, Work and Occupations, Sociological Theory, and Sociological Methodology.
+
 *Analysis:*
 * Conference/publication classification is based on logistic regression model after performing a grid search to find the best term frequency vectorizer parameters.
 * Word colors are based on logistic regression coefficients.
