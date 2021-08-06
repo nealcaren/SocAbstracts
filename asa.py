@@ -80,6 +80,11 @@ sample_sentence = st.text_area('', abstract, height=400)
 
 
 sample_sentence_length = word_counter(sample_sentence)
+
+if len(sample_sentence_length) == 0:
+    st.write('''The abstract field is blank. Type or past something and press ⌘ + Enter.''')
+    exit()
+
 sample_sentence_slength = len(sent_tokenize(sample_sentence))
 pasper = passive_per(sample_sentence) * 100
 sample_sentence_slength_str = num2words(sample_sentence_slength)
