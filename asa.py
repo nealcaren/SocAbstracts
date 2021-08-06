@@ -6,7 +6,7 @@ import pandas as pd
 import spacy
 
 
-@st.cache(suppress_st_warning=True)
+#@st.cache(suppress_st_warning=True)
 def load_nlp():
     try:
 
