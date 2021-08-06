@@ -4,12 +4,19 @@ import streamlit as st
 import pandas as pd
 
 import spacy
-try:
-    nlp = spacy.load('en_core_web_md')
-except OSError:
-    from spacy.cli import download
-    download('en_core_web_md')
-    nlp = spacy.load('en_core_web_md')
+
+
+@st.cache(suppress_st_warning=True)
+def load_nlp()
+    try:
+
+        nlp = spacy.load('en_core_web_md')
+    except OSError:
+        from spacy.cli import download
+        download('en_core_web_md')
+        nlp = spacy.load('en_core_web_md')
+    return nlp
+nlp = load_nlp()
 
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
@@ -109,7 +116,13 @@ desriptive_sentence = f'{length_sentence} {passive_sentence}'
 st.write(desriptive_sentence)
 
 # Journal predictions
-pub_est = load('pub_est.jlib')
+@st.cache(suppress_st_warning=True)
+def load_pub():
+    pub_est = load('pub_est.jlib')
+    return pub_est
+pub_est = load_pub()
+
+
 def journal_choices(abstract):
     pred_prob = pub_est.predict_proba([abstract])
     pdf = pd.DataFrame(pred_prob, columns=pub_est.classes_)
