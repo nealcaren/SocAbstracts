@@ -116,12 +116,12 @@ desriptive_sentence = f'{length_sentence} {passive_sentence}'
 st.write(desriptive_sentence)
 
 # Journal predictions
-@st.cache(suppress_st_warning=True)
+#@st.cache(suppress_st_warning=True)
 def load_pub():
     pub_est = load('pub_est.jlib')
     return pub_est
-pub_est = load_pub()
-
+#pub_est = load_pub()
+pub_est = load('pub_est.jlib')
 
 def journal_choices(abstract):
     pred_prob = pub_est.predict_proba([abstract])
