@@ -6,15 +6,15 @@ import pandas as pd
 import spacy
 
 
-#@st.cache(suppress_st_warning=True)
+@st.cache(allow_output_mutation=True, suppress_st_warning=True)
 def load_nlp():
     try:
 
-        nlp = spacy.load('en_core_web_md')
+        nlp = spacy.load('en_core_web_sm')
     except OSError:
         from spacy.cli import download
-        download('en_core_web_md')
-        nlp = spacy.load('en_core_web_md')
+        download('en_core_web_sm')
+        nlp = spacy.load('en_core_web_sm')
     return nlp
 nlp = load_nlp()
 
@@ -116,12 +116,12 @@ desriptive_sentence = f'{length_sentence} {passive_sentence}'
 st.write(desriptive_sentence)
 
 # Journal predictions
-#@st.cache(suppress_st_warning=True)
+@st.cache(allow_output_mutation=True, suppress_st_warning=True)
 def load_pub():
     pub_est = load('pub_est.jlib')
     return pub_est
-#pub_est = load_pub()
-pub_est = load('pub_est.jlib')
+pub_est = load_pub()
+#pub_est = load('pub_est.jlib')
 
 def journal_choices(abstract):
     pred_prob = pub_est.predict_proba([abstract])
@@ -141,9 +141,15 @@ st.write(f'You might think about submitting to journals like {suggestions}. Each
 
 
 # Prediction from saved model
-pipeline = load('abstract_estimator.joblib')
-vectorizer = pipeline.named_steps['vect']
-model = pipeline.named_steps['clf']
+
+@st.cache(allow_output_mutation=True, suppress_st_warning=True)
+def load_pipeline():
+    pipeline = load('abstract_estimator.joblib')
+    vectorizer = pipeline.named_steps['vect']
+    model = pipeline.named_steps['clf']
+    return pipeline, vectorizer, model
+
+pipeline, vectorizer, model = load_pipeline()
 
 pred = pipeline.predict_proba([sample_sentence])[0][-1]
 
@@ -236,7 +242,11 @@ def simwork(new_abstract):
     match_text = '* ' + match_text.replace('..','.')
     return match_text
 
-cdf = pd.read_json('pub_cites.json')
+@st.cache(allow_output_mutation=True, suppress_st_warning=True)
+def load_cdf():
+    return pd.read_json('pub_cites.json')
+cdf = load_cdf()
+
 topic_model = LdaModel.load("abstract_topics.model")
 topic_dictionary =  Dictionary.load("abstract_topics.dict")
 
