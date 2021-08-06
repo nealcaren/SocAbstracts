@@ -83,7 +83,7 @@ sample_sentence_length = word_counter(sample_sentence)
 
 if sample_sentence_length == 0:
     st.write('''The abstract field is blank. Type or past something and press ⌘ + Enter.''')
-    exit()
+    quit()
 
 sample_sentence_slength = len(sent_tokenize(sample_sentence))
 pasper = passive_per(sample_sentence) * 100
