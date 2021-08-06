@@ -7,7 +7,7 @@ import spacy
 
 
 @st.cache(suppress_st_warning=True)
-def load_nlp()
+def load_nlp():
     try:
 
         nlp = spacy.load('en_core_web_md')
