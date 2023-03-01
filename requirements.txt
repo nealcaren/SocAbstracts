@@ -1,7 +1,7 @@
 streamlit
 numpy
 spacy
-sklearn
+scikit-learn
 nltk
 eli5
 num2words
